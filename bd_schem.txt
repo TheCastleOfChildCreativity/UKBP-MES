@@ -1,0 +1,52 @@
+Table "details_stages" {
+  "id" bigint [pk, not null]
+  "detail_id" int
+  "stage_id" int
+}
+
+Table "history_operation" {
+  "id" bigint [pk, not null]
+  "work_piece" int [not null]
+  "stage" int
+}
+
+Table "users" {
+  "id" int [pk, not null, increment]
+  "name" text [not null]
+  "post" int [not null, ref: > "post"."id"]
+  "surname" text [not null]
+  "patronymic" text [not null]
+  "date of birth" date [not null]
+  "passport data" int [not null]
+  "created_at" timestamp [not null]
+  "updated_at" bigint [not null]
+}
+
+Table "stages" {
+  "id" int [pk, not null, increment, ref: - "work_pieces"."current_stage", ref: - "details_stages"."stage_id", ref: - "history_operation"."stage"]
+  "name" varchar(255) [not null]
+  "created_at" timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  "updated_at" timestamp [not null, default: `CURRENT_TIMESTAMP`]
+}
+
+Table "details" {
+  "id" int [pk, not null, increment, ref: > "details_stages"."detail_id"]
+  "name" varchar(255) [not null]
+  "type" text
+  "created_at" timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  "updated_at" timestamp [not null, default: `CURRENT_TIMESTAMP`]
+}
+
+Table "work_pieces" {
+  "id" bigint [pk, not null]
+  "detail" int [not null, ref: > "details"."id", ref: - "history_operation"."work_piece"]
+  "current_stage" int [not null]
+  "status" varchar(255) [not null]
+}
+
+Table "post" {
+  "id" int [pk, not null, increment]
+  "title" varchar(255) [not null]
+  "created_at" timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  "updated_at" timestamp [not null, default: `CURRENT_TIMESTAMP`]
+}
