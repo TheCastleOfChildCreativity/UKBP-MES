@@ -1,14 +1,11 @@
-from idlelib import history
-
 from django.contrib import admin
 from django.urls import path, include
-
-from . import views
+from app.views import index, details, history_operation, stages, work_pieces
 
 urlpatterns = [
-    path("", views.index),
-    path("details/", views.details),
-    path("history/", views.history_operation),
-    path("stages/", views.stages),
-    path("work_pieces/", views.work_pieces),
+    path("", index),
+    path("details/", details),
+    path("history/", history_operation),
+    path("stages/", stages),
+    path("work_pieces/", work_pieces),
 ]
