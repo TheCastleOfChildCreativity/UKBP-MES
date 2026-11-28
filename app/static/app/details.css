@@ -1,0 +1,12 @@
+li {
+    list-style-type: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 4px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.details-list {
+    background-color: hsl(30, 10%, 92%);
+}

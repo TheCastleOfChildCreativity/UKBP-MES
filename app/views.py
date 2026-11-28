@@ -1,14 +1,13 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 from app.models import Details, History_operation, Stages, Work_pieces
 
 
 def details(request):
-    columns_details = Details.objects.all()
-    html = ""
-    for column in columns_details:
-        html += f"{column.name}<br>"
-    return HttpResponse(html)
+    details = Details.objects.all()
+    context = {"details": details}
+    return render(request, "details.html", context=context)
 
 
 def history_operation(request):
